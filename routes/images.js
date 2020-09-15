@@ -5,6 +5,15 @@ const axios = require('axios');
 const Verb = require('../models/verb');
 const CDN = "https://raw.githubusercontent.com/kolverar/french_verbs/master/public/images/"
 
+// CORS
+router.use((req, res, next) => {
+
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, PATCH, DELETE")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    next()
+})
+
 // API REST  /verbs/*
 
 router.get('/', (req, res) => {

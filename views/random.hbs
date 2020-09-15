@@ -1,0 +1,66 @@
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
+
+    <style>
+        .card {
+            width: 25vw;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <div class="container is-fluid">
+        <div class="columns">
+            <div class="column">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image">
+                            <img src="{{imageURL}}" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content">
+                                <p class="title is-4">{{name}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+
+    apiRest = "http://french-verbs.herokuapp.com/verbs"
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            verbs: null
+        },
+        mounted(){
+            axios
+                    .get(apiRest, {
+                        method: 'GET',
+                        mode: 'no-cors',
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                            'Content-Type': 'application/json',
+                        },
+                        withCredentials: true,
+                        credentials: 'same-origin',
+                    })
+                    .then((response) => {
+                        this.verbs = response.data
+                        console.log(response.data)
+                    })
+        }
+    })
+</script>
+</html>

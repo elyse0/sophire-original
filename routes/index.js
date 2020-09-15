@@ -11,10 +11,21 @@ router.get('/', function(req, res) {
         if(err)
             res.status(500).json({mensaje: "error!"})
         else
-            res.render('index', { title: 'Express', verbs: data});
+            res.render('index', { title: 'Suffire | French verbs', verbs: data});
     });
-
-
 });
+
+router.get('/random', function(req, res) {
+
+    Verb.find({}, (err, data) => {
+
+        if(err)
+            res.status(500).json({mensaje: "error!"})
+        else
+            res.render('random', {message: "{{message}}"})
+    });
+});
+
+
 
 module.exports = router;
