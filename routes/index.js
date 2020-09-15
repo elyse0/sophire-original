@@ -22,10 +22,13 @@ router.get('/random', function(req, res) {
         if(err)
             res.status(500).json({mensaje: "error!"})
         else
-            res.render('random', {message: "{{message}}"})
+            res.render('random', {verb: data[Math.floor(Math.random() * (data.length))]});
     });
 });
 
+router.get('/admin', function(req, res) {
 
+    res.render('admin');
+});
 
 module.exports = router;
