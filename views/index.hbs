@@ -1,7 +1,47 @@
-<h1>{{title}}</h1>
-<!--<p>Welcome to {{title}}</p>-->
+<html>
+<header>
+    <title>French verbs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <style>
+        .card {
+            width: 25vw;
+        }
+    </style>
+</header>
 
-<!--<form action="/verbs" method="post" enctype="multipart/form-data">-->
-<!--    <input type="file" accept="image/*" name="photo" >-->
-<!--    <input type="submit" value="upload">-->
-<!--</form>-->
+<body>
+
+<div class="container is-fluid">
+    <div class="notification">
+        <div class="task-container columns is-multiline">
+
+            {{#each verbs}}
+
+                <div class="column">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="{{imageURL}}" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <p class="title is-4">{{name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+
+</html>

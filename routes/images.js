@@ -3,16 +3,11 @@ const router = express.Router();
 const axios = require('axios');
 
 const Verb = require('../models/verb');
-const CDN = "https://cdn.jsdelivr.net/gh/kolverar/french_verbs@master/public/images/"
+const CDN = "https://raw.githubusercontent.com/kolverar/french_verbs/master/public/images/"
 
-// API REST
+// API REST  /verbs/*
 
-router.get('/', function(req, res) {
-
-    res.render('index', { title: 'Express' });
-});
-
-router.get('/verbs/', (req, res) => {
+router.get('/', (req, res) => {
 
     Verb.find({}, (err, data) => {
 
@@ -23,7 +18,7 @@ router.get('/verbs/', (req, res) => {
     });
 });
 
-router.get('/verbs/:nameUTF8',(req,res)=>{
+router.get('/:nameUTF8',(req,res)=>{
 
     Verb.findOne({'nameUTF8' : req.params.nameUTF8},(err,data)=>{
 
@@ -34,14 +29,14 @@ router.get('/verbs/:nameUTF8',(req,res)=>{
     });
 });
 
-router.delete('/verbs',(req,res)=>{
+router.delete('/',(req,res)=>{
 
     res.status(405).json({mensaje:"Not allowed"});
 });
 
-router.delete('/verbs/:nameUTF8' , (req,res,next)=>{
+router.delete('/:nameUTF8' , (req,res)=>{
 
-    Verb.findOneAndDelete({id: req.params.nameUTF8} , (err, datos)=>{
+    Verb.findOneAndDelete({id: req.body.nameUTF8} , (err, datos)=>{
 
         if(err)
             res.status(404).json({mensaje:"Couldn't find it"});
@@ -51,21 +46,24 @@ router.delete('/verbs/:nameUTF8' , (req,res,next)=>{
     });
 });
 
-router.post('/verbs', (req, res) => {
+router.post('/', (req, res) => {
+
+    nameUTF8 = req.body.nameUTF8
 
     // Check if verb exists
-    Verb.find({'nameUTF8': req.body.nameUT8}, (error, data) => {
+    Verb.find({'nameUTF8': nameUTF8}, (error, data) => {
 
         // It doesnt exist duplicate
-        if(data == null){
+        if(data.length === 0){
 
             // Check if image exists
-            axios.get(CDN + req.body.nameUTF8)
-                .then((res) => {
+            axios.get(CDN + nameUTF8 + ".png")
+                .then((response) => {
 
                     let verb = Verb({
                             name: req.body.name,
-                            nameUTF8: req.body.nameUTF8
+                            nameUTF8: nameUTF8,
+                            imageURL: CDN + nameUTF8 + ".png"
                         }
                     )
 
@@ -83,7 +81,7 @@ router.post('/verbs', (req, res) => {
                 })
         }
         else {
-
+            console.log(data)
             res.status(404).json({message: "Verb already exists!"})
         }
     })
