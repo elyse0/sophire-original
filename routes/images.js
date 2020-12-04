@@ -18,7 +18,7 @@ router.use((req, res, next) => {
 
 router.get('/', (req, res) => {
 
-    Verb.find({}, (err, data) => {
+    Verb.find({}).sort({name: 1}).exec(function (err, data) {
 
         if(err)
             res.status(500).json({mensaje: "error!"})
@@ -55,15 +55,15 @@ router.delete('/:nameUTF8' , (req,res)=>{
     });
 });
 
-router.post('/', (req, res) => {
+router.patch('/', (req, res) => {
 
     nameUTF8 = req.body.nameUTF8
 
     // Check if verb exists
-    Verb.find({'nameUTF8': nameUTF8}, (error, data) => {
+    Verb.findOne({'nameUTF8': nameUTF8}, (error, data) => {
 
-        // It doesnt exist duplicate
-        if(data.length === 0){
+        // It exists
+        if(data.length !== 0){
 
             // Check if image exists
             axios.get(CDN + nameUTF8 + ".png")
@@ -91,9 +91,11 @@ router.post('/', (req, res) => {
         }
         else {
             console.log(data)
-            res.status(404).json({message: "Verb already exists!"})
+            res.status(404).json({message: "Verb doesn't exist!"})
         }
     })
 });
+
+
 
 module.exports = router;
