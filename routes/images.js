@@ -66,6 +66,7 @@ router.post('/', (req, res) => {
         if(data.length === 0){
 
             // Check if image exists
+            console.log(CDN + nameUTF8 + ".png")
             axios.get(CDN + nameUTF8 + ".png")
                 .then((response) => {
 

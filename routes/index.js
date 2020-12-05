@@ -3,6 +3,10 @@ var router = express.Router();
 var axios = require('axios');
 var lodash = require('lodash')
 
+const { Random } = require("random-js");
+const random = new Random();
+
+
 const Verb = require('../models/verb');
 
 /* GET home page. */
@@ -24,7 +28,7 @@ router.get('/random', function(req, res) {
         if(err)
             res.status(500).json({mensaje: "error!"})
         else
-            res.render('random', {verb: data[Math.floor(Math.random() * (data.length))]});
+            res.render('random', {verb: data[random.integer(0, data.length)]});
     });
 });
 
