@@ -2,9 +2,8 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 var lodash = require('lodash')
-
-const { Random } = require("random-js");
-const random = new Random();
+const Random = require("random-js");
+const random = new Random.Random();
 
 
 const Verb = require('../models/verb');
