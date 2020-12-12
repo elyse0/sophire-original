@@ -71,7 +71,7 @@ router.get('/random', function(req, res) {
                 randomNumber = random.integer(0, data.length)
                 tempCookie = {}
                 tempCookie[randomNumber] = 0
-                res.cookie('verbs', tempCookie,{sameSite: true})
+                res.cookie('verbs', tempCookie, {sameSite: 'strict'})
             }else {
                 // Create a set with all possible verbs
                 let allVerbs = new Set([...Array(data.length).keys()].map(x => String(x)))
@@ -91,7 +91,7 @@ router.get('/random', function(req, res) {
                 // Add random number to the cookie
                 tempCookie = cookieParser.JSONCookies(req.cookies)['verbs']
                 tempCookie[randomNumber] = 0
-                res.cookie('verbs', tempCookie,{sameSite: true})
+                res.cookie('verbs', tempCookie,{sameSite: 'strict'})
             }
 
             //console.log(allVerbs)
