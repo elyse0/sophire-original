@@ -58,6 +58,7 @@ router.get('/random', function(req, res) {
     console.log(cookieParser.JSONCookies(req.cookies))
     keysFromCookie = getKeysFromJson(cookieParser.JSONCookies(req.cookies)['verbs'])
 
+    console.log(keysFromCookie.length)
     Verb.find({}).sort({nameUTF8: 1}).exec(function (err, data) {
 
         if(err)
