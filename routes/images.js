@@ -18,7 +18,7 @@ router.use((req, res, next) => {
 
 router.get('/', (req, res) => {
 
-    Verb.find({}).sort({name: 1}).exec(function (err, data) {
+    Verb.find({}).sort({nameUTF8: 1}).exec(function (err, data) {
 
         if(err)
             res.status(500).json({mensaje: "error!"})

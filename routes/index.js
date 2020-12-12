@@ -2,11 +2,43 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 var lodash = require('lodash')
+var cookieParser = require('cookie-parser')
+
 const Random = require("random-js");
 const random = new Random.Random();
 
 
 const Verb = require('../models/verb');
+
+let isEmpty = function (obj){
+    return Object.keys(obj).length === 0;
+}
+
+let getKeysFromJson = function (json){
+
+    try{
+        return Object.keys(json)
+    }
+    catch (error){
+        return []
+    }
+}
+
+let arrayToJsonKeys = function (array){
+
+    jsonArray = {}
+
+    for(let i = 0; i < array.length; i++){
+
+        jsonArray[array[i]]
+    }
+}
+
+function setDifference(a, b){
+
+    return new Set(
+        [...a].filter(x => !b.has(x)))
+}
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -22,12 +54,48 @@ router.get('/', function(req, res) {
 
 router.get('/random', function(req, res) {
 
-    Verb.find({}, (err, data) => {
+    randomNumber = 0
+    console.log(cookieParser.JSONCookies(req.cookies))
+    keysFromCookie = getKeysFromJson(cookieParser.JSONCookies(req.cookies)['verbs'])
+
+    Verb.find({}).sort({nameUTF8: 1}).exec(function (err, data) {
 
         if(err)
             res.status(500).json({mensaje: "error!"})
-        else
-            res.render('random', {verb: data[random.integer(0, data.length)]});
+        else{
+            // Cookies
+            if(keysFromCookie.length === 0 || keysFromCookie.length === data.length){
+                // New cookie and first verb
+
+                randomNumber = random.integer(0, data.length)
+                tempCookie = {}
+                tempCookie[randomNumber] = 0
+                res.cookie('verbs', tempCookie,{sameSite: true})
+            }else {
+                // Create a set with all possible verbs
+                let allVerbs = new Set([...Array(data.length).keys()].map(x => String(x)))
+                // Create a set from cookie
+                let verbsUser = new Set(getKeysFromJson(cookieParser.JSONCookies(req.cookies)['verbs']))
+                // Create a set from all available verbs
+                let possibleVerbs = setDifference(allVerbs, verbsUser)
+
+                // Choose random number of the avaiable verbs's set
+                let arrayPossibleVerbs = Array.from(possibleVerbs)
+
+                console.log("Left: " + arrayPossibleVerbs.length)
+
+                randomNumber = arrayPossibleVerbs[random.integer(0, arrayPossibleVerbs.length)]
+                console.log(randomNumber)
+
+                // Add random number to the cookie
+                tempCookie = cookieParser.JSONCookies(req.cookies)['verbs']
+                tempCookie[randomNumber] = 0
+                res.cookie('verbs', tempCookie,{sameSite: true})
+            }
+
+            //console.log(allVerbs)
+            res.render('random', {verb: data[randomNumber]});
+        }
     });
 });
 
@@ -114,14 +182,6 @@ router.get('/todo', function (req, res) {
             result.add(json[key].imageURL);
         });
         return result;
-    }
-
-    function setDifference(a, b){
-
-        let difference = new Set(
-            [...a].filter(x => !b.has(x)));
-
-        return difference
     }
 
     function arraytojson(array){
