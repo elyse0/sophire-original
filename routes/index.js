@@ -24,6 +24,17 @@ let getKeysFromJson = function (json){
     }
 }
 
+let forceRandomInteger = function (limInf, limSup){
+
+    let randomValue = undefined
+
+    while (randomValue === undefined){
+        randomValue = random.integer(limInf, limSup)
+    }
+
+    return randomValue
+}
+
 let arrayToJsonKeys = function (array){
 
     jsonArray = {}
@@ -56,9 +67,15 @@ router.get('/random', function(req, res) {
 
     randomNumber = 0
     console.log(cookieParser.JSONCookies(req.cookies))
-    keysFromCookie = getKeysFromJson(cookieParser.JSONCookies(req.cookies)['verbs'])
 
-    console.log(keysFromCookie.length)
+    try{
+        keysFromCookie = cookieParser.JSONCookies(req.cookies)['CookieVerbs']['verbs']
+    }
+    catch (error){
+        keysFromCookie = []
+    }
+
+    console.log("Cookies length: " + keysFromCookie.length)
     Verb.find({}).sort({nameUTF8: 1}).exec(function (err, data) {
 
         if(err)
@@ -68,30 +85,28 @@ router.get('/random', function(req, res) {
             if(keysFromCookie.length === 0 || keysFromCookie.length === data.length){
                 // New cookie and first verb
 
-                randomNumber = random.integer(0, data.length)
-                tempCookie = {}
-                tempCookie[randomNumber] = 0
-                res.cookie('verbs', tempCookie, {sameSite: 'strict'})
+                randomNumber = forceRandomInteger(0, data.length)
+                tempCookie = {'verbs': [randomNumber]}
+                res.cookie('CookieVerbs', tempCookie, {sameSite: 'strict'})
             }else {
                 // Create a set with all possible verbs
-                let allVerbs = new Set([...Array(data.length).keys()].map(x => String(x)))
+                let allVerbs = new Set([...Array(data.length).keys()])
                 // Create a set from cookie
-                let verbsUser = new Set(getKeysFromJson(cookieParser.JSONCookies(req.cookies)['verbs']))
+                let verbsUser = new Set(cookieParser.JSONCookies(req.cookies)['CookieVerbs']['verbs'])
                 // Create a set from all available verbs
                 let possibleVerbs = setDifference(allVerbs, verbsUser)
 
                 // Choose random number of the avaiable verbs's set
                 let arrayPossibleVerbs = Array.from(possibleVerbs)
+                randomNumber = arrayPossibleVerbs[forceRandomInteger(0, arrayPossibleVerbs.length)]
+                console.log("Random number: " + randomNumber)
 
-                console.log("Left: " + arrayPossibleVerbs.length)
-
-                randomNumber = arrayPossibleVerbs[random.integer(0, arrayPossibleVerbs.length)]
-                console.log(randomNumber)
+                console.log("Number of verbs left: " + (arrayPossibleVerbs.length))
 
                 // Add random number to the cookie
-                tempCookie = cookieParser.JSONCookies(req.cookies)['verbs']
-                tempCookie[randomNumber] = 0
-                res.cookie('verbs', tempCookie,{sameSite: 'strict'})
+                tempCookie = cookieParser.JSONCookies(req.cookies)['CookieVerbs']
+                tempCookie['verbs'].push(randomNumber)
+                res.cookie('CookieVerbs', tempCookie,{sameSite: 'strict'})
             }
 
             //console.log(allVerbs)
