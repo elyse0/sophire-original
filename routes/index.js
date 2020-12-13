@@ -120,10 +120,17 @@ router.get('/verbs', function(req, res) {
     index = req.query.index
 
     indexes = 'abcdefghijklmnopqrstuvwxyz'.split('').concat(["all"])
-    console.log(indexes)
 
-    indexes = [{"index": "amish"}, {"index": "sup"}]
-    console.log(indexes)
+    arrayTemp = []
+
+    for(let i = 0; i < indexes.length; i++){
+        jsonTemp = {}
+        jsonTemp['index'] = indexes[i]
+        arrayTemp.push(jsonTemp)
+    }
+
+    jsonIndexes = JSON.parse(JSON.stringify(arrayTemp))
+
 
     if(indexes.includes(index)){
 
@@ -133,39 +140,37 @@ router.get('/verbs', function(req, res) {
                 if(err)
                     res.status(404).json({message: "error"})
                 else
-                    res.render('verbs', {title: 'Suffire | French verbs', verbs: data, indexes: JSON.stringify(indexes)});
+                    res.render('verbs', {title: 'Suffire | French verbs', verbs: data, indexes: jsonIndexes});
             })
         }
         else{
 
-            Verb.find({name: { '$regex': "^" + index}}).sort({nameUTF8: 1}).exec(function (err, data) {
+            Verb.find({nameUTF8: { '$regex': "^" + index}}).sort({nameUTF8: 1}).exec(function (err, data) {
 
                 if(err)
                     res.status(404).json({message: "error"})
                 else
-                    res.render('verbs', {title: 'Suffire | French verbs', verbs: data});
+                    res.render('verbs', {title: 'Suffire | French verbs', verbs: data, indexes: jsonIndexes});
             })
         }
     }
     else if(index === undefined){
-        Verb.find({name: { '$regex': "^a"}}).sort({nameUTF8: 1}).exec(function (err, data) {
+        Verb.find({nameUTF8: { '$regex': "^a"}}).sort({nameUTF8: 1}).exec(function (err, data) {
 
             if(err)
                 res.status(404).json({message: "error"})
             else
-                res.render('verbs', {title: 'Suffire | French verbs', verbs: data});
+                res.render('verbs', {title: 'Suffire | French verbs', verbs: data, indexes: jsonIndexes});
         })
     }
     else
         res.status(404).json({message: "error"})
 });
 
-
 router.get('/admin', function(req, res) {
 
     res.render('admin');
 });
-
 
 router.get('/api', function(req, res) {
 
@@ -184,9 +189,6 @@ router.post('/search', function(req, res) {
         }
     })
 });
-
-
-
 
 router.get('/todo', function (req, res) {
 
