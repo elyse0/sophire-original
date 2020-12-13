@@ -4,19 +4,15 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose')
+const dotenv = require('dotenv').config()
 
 let imagesRouter = require('./routes/images');
-let indexRouter = require('./routes/index')
+let indexRouter = require('./routes/index');
 
 var app = express();
 
 // Connection to MongoDB
-userMongoDB = "user"
-passwordMongoDB = "FVDB4GgNtZMpOZmj"
-databaseMongoDB = "french-verbs"
-mongoURI = `mongodb+srv://${userMongoDB}:${passwordMongoDB}@french-verbs.t4tmy.mongodb.net/${databaseMongoDB}?retryWrites=true&w=majority`
-
-mongoose.connect(mongoURI, {
+mongoose.connect(process.env.DBCONNECTION, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }, (err, client) => {
