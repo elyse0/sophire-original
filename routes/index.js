@@ -52,6 +52,8 @@ function setDifference(a, b){
 }
 
 /* GET home page. */
+
+// GET / - Get mainpage of French verbs
 router.get('/', function(req, res) {
 
     Verb.find({}, (err, data) => {
@@ -63,6 +65,7 @@ router.get('/', function(req, res) {
     });
 });
 
+// GET /random - Get a random verb using cookies to ensure see all the verbs
 router.get('/random', function(req, res) {
 
     randomNumber = 0
@@ -115,6 +118,7 @@ router.get('/random', function(req, res) {
     });
 });
 
+// Get /verbs - Get list of verbs by index --> default: all
 router.get('/verbs', function(req, res) {
 
     index = req.query.index
@@ -167,19 +171,25 @@ router.get('/verbs', function(req, res) {
         res.status(404).json({message: "error"})
 });
 
+// GET /admin - Get admin login access
 router.get('/admin', function(req, res) {
 
     res.render('admin');
 });
 
+// GET /api - Show REST API table
 router.get('/api', function(req, res) {
 
     res.render('api');
 });
 
+// GET /search - Search entire verb database using nameUTF8
 router.post('/search', function(req, res) {
 
-    Verb.find({name: {'$regex': req.body.search}}).sort({nameUTF8: 1}).exec((err, data) => {
+    // Get rid of accents or weird stuff
+    let search = (req.body.search).normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+
+    Verb.find({nameUTF8: {'$regex': search }}).sort({nameUTF8: 1}).exec((err, data) => {
 
         if(err)
             res.status(404).json({message: "Error!"})
@@ -190,6 +200,7 @@ router.post('/search', function(req, res) {
     })
 });
 
+// GET /todo  - Get list of verbs left to add to database
 router.get('/todo', function (req, res) {
 
     function json2set(json){

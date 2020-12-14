@@ -2,20 +2,35 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
+// Authentication
+const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require('jwks-rsa');
+
+// API Access Authentication using Auth0
+const checkJwt = jwt({
+    // Dynamically provide a signing key
+    // based on the kid in the header and
+    // the signing keys provided by the JWKS endpoint.
+    secret: jwksRsa.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: `https://french-verbs.us.auth0.com/.well-known/jwks.json`
+    }),
+
+    // Validate the audience and the issuer.
+    audience: 'https://french-verbs.herokuapp.com/api',
+    issuer: `https://french-verbs.us.auth0.com/`,
+    algorithms: ['RS256']
+});
+
 const Verb = require('../models/verb');
 const CDN = "https://raw.githubusercontent.com/kolverar/french_verbs/master/public/images/"
 
-// CORS
-router.use((req, res, next) => {
+// REST API  /verbs/*
 
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, PATCH, DELETE")
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-    next()
-})
-
-// API REST  /verbs/*
-
+// GET / - Get entire database of verbs
 router.get('/', (req, res) => {
 
     Verb.find({}).sort({nameUTF8: 1}).exec(function (err, data) {
@@ -27,6 +42,7 @@ router.get('/', (req, res) => {
     });
 });
 
+// GET /:nameUTF8 - Get a verb by nameUTF8
 router.get('/:nameUTF8',(req,res)=>{
 
     Verb.findOne({'nameUTF8' : req.params.nameUTF8},(err,data)=>{
@@ -38,24 +54,8 @@ router.get('/:nameUTF8',(req,res)=>{
     });
 });
 
-router.delete('/',(req,res)=>{
-
-    res.status(405).json({mensaje:"Not allowed"});
-});
-
-router.delete('/:nameUTF8' , (req,res)=>{
-
-    Verb.findOneAndDelete({id: req.body.nameUTF8} , (err, datos)=>{
-
-        if(err)
-            res.status(404).json({mensaje:"Couldn't find it"});
-        else
-            res.status(200).json({mensaje: "Ok"})
-
-    });
-});
-
-router.post('/', (req, res) => {
+// POST / - Add a new verb providing nameUTF8 and name
+router.post('/',checkJwt , (req, res) => {
 
     nameUTF8 = req.body.nameUTF8
 
@@ -97,8 +97,8 @@ router.post('/', (req, res) => {
     })
 });
 
-
-router.patch('/', (req, res) => {
+// PATCH / - Update verb info providing nameUTF8 and new name
+router.patch('/',checkJwt, (req, res) => {
 
     nameUTF8 = req.body.nameUTF8
 
@@ -139,6 +139,23 @@ router.patch('/', (req, res) => {
     })
 });
 
+// DELETE /:nameUTF8 - Delete verb providing nameUTF8
+router.delete('/:nameUTF8',checkJwt , (req,res)=>{
 
+    Verb.findOneAndDelete({id: req.body.nameUTF8} , (err, datos)=>{
+
+        if(err)
+            res.status(404).json({mensaje:"Couldn't find it"});
+        else
+            res.status(200).json({mensaje: "Ok"})
+
+    });
+});
+
+// DELETE / - Delete entire verb database <- Forbidden
+router.delete('/',(req,res)=>{
+
+    res.status(405).json({mensaje:"Not allowed"});
+});
 
 module.exports = router;

@@ -12,10 +12,13 @@
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
+    "express-jwt": "^6.0.0",
+    "express-jwt-authz": "^2.4.1",
     "express-session": "^1.17.1",
     "gridfs-stream": "^1.1.1",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
+    "jwks-rsa": "^1.12.0",
     "loadash": "^1.0.0",
     "lodash": "^4.17.20",
     "method-override": "^3.0.0",
@@ -24,6 +27,7 @@
     "multer": "^1.4.2",
     "multer-gridfs-storage": "^4.2.0",
     "random-js": "^2.1.0",
-    "random.js": "^0.1.0"
+    "random.js": "^0.1.0",
+    "utf8": "^3.0.0"
   }
 }
