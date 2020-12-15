@@ -15,7 +15,8 @@ var app = express();
 // Connection to MongoDB
 mongoose.connect(process.env.DBCONNECTION, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
 }, (err, client) => {
   if(err)
     console.error(err)
