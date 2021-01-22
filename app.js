@@ -8,7 +8,12 @@ const dotenv = require('dotenv').config()
 let cors = require('cors')
 
 let imagesRouter = require('./routes/images');
+
 let indexRouter = require('./routes/index');
+let contextRouter = require('./routes/context')
+
+let vocabulary = require('./routes/vocabulary')
+let vocabularyApiRouter = require('./routes/vocabulary_api')
 
 var app = express();
 
@@ -36,7 +41,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
 app.use('/', indexRouter);
+app.use('/vocabulary', vocabulary)
 app.use('/api/verbs', imagesRouter)
+app.use('/api/vocabulary', vocabularyApiRouter)
+app.use('/context', contextRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

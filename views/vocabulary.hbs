@@ -1,0 +1,43 @@
+
+<style>
+    .card {
+        width: 25vw;
+    }
+</style>
+
+<div class="container is-fluid">
+
+<!--
+    <div class="tabs">
+        <ul>
+            {{#each indexes}}
+                <li><a href="/verbs?index={{index}}">{{index}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+-->
+
+    <div class="notification">
+        <div class="task-container columns is-multiline">
+
+            {{#each vocabulary}}
+                <div class="column">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="{{imageURL}}" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <p class="title is-4">{{name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

@@ -31,6 +31,7 @@
     "random-int": "^2.0.1",
     "random-js": "^2.1.0",
     "random.js": "^0.1.0",
+    "reverso-api": "^2.16.1",
     "utf8": "^3.0.0"
   }
 }
