@@ -22,7 +22,7 @@ router.get('/:category', function(req, res) {
         else
         {
             if(data.length === 0){
-                res.render('error')
+                res.render('404')
             }else{
                 res.render('vocabulary', {
                     title: 'Suffire | French verbs',

@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
     Vocabulary.find().sort({nameUTF8: 1}).exec(function (err, data) {
 
         if(err)
-            res.status(404).json({message: "error"})
+            res.render('404')
         else
             res.render('vocabulary', {
                 title: 'Suffire | French verbs',

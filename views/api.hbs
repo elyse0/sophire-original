@@ -3,8 +3,10 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    REST API - French verbs
+                    REST API - Suffire
                 </h1>
+                <br>
+                <h2 class="subtitle">Verbs</h2>
 
                 <table class="table">
                     <thead>
@@ -40,12 +42,51 @@
                             <td>PUT</td>
                             <td>/api/verbs/{nameUTF8}</td>
                         </tr>
+                    </tbody>
+                </table>
+
+                <br>
+                <h2 class="subtitle">Vocabulary</h2>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>HTTP Method</th>
+                        <th>Path</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Get all the vocabulary</td>
+                        <td>GET</td>
+                        <td>/api/vocabulary</td>
+                    </tr>
+                    <tr>
+                        <td>Get a specific vocabulary piece</td>
+                        <td>GET</td>
+                        <td>/api/vocabulary/{nameUTF8}</td>
+                    </tr>
+                    <tr>
+                        <td>Create a new vocabulary piece</td>
+                        <td>POST</td>
+                        <td>/api/vocabulary/</td>
+                    </tr>
+                    <tr>
+                        <td>Delete a vocabulary piece</td>
+                        <td>DELETE</td>
+                        <td>/api/vocabulary/{nameUTF8}</td>
+                    </tr>
+                    <tr>
+                        <td>Update an existing vocabulary piece</td>
+                        <td>PUT</td>
+                        <td>/api/vocabulary/{nameUTF8}</td>
+                    </tr>
 
                     </tbody>
 
 
                 </table>
-
 
 
             </div>
