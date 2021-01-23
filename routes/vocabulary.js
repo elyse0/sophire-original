@@ -1,18 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const Vocabulary = require('../models/vocabulary')
+const vocabularyRandom = require('/routes/vocabulary/vocabulary_random')
+const vocabularyIndex = require('/routes/vocabulary/vocabulary_index')
+const vocabularyCategories = require('/routes/vocabulary/vocabulary_categories')
 
-// Get /vocabulary - Get list of vocabulary by category --> default: ?
-router.get('/', function(req, res) {
-
-    Vocabulary.find().sort({nameUTF8: 1}).exec(function (err, data) {
-
-        if(err)
-            res.status(404).json({message: "error"})
-        else
-            res.render('vocabulary', {title: 'Suffire | French verbs', vocabulary: data});
-    })
-});
+router.use('/', vocabularyIndex)            // Path: /vocabulary/
+router.use('/random', vocabularyRandom)     // Path: /vocabulary/random
+router.use('/', vocabularyCategories)       // Path: /vocabulary/:category
 
 module.exports = router;

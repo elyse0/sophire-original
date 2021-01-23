@@ -7,11 +7,6 @@
     .center{
         margin: auto;
     }
-
-    .is-primary{
-        background-color: #731C47;
-        border-color: #731C47;
-    }
 </style>
 
 <div class="container is-fluid">
@@ -21,14 +16,14 @@
                 <div class="card center">
                     <div class="card-image">
                         <figure class="image">
-                            <img src="{{verb.imageURL}}" alt="Placeholder image">
+                            <img src="{{image.imageURL}}" alt="Placeholder image">
                         </figure>
                     </div>
                 </div>
 
                 <p style="text-align: center">
                     <br>
-                <a href="/random" class="button is-primary is-outlined is-rounded is-medium is-fullwidth">Random</a>
+                <a href='{{path}}' class="button {{color}} is-outlined is-rounded is-medium is-fullwidth">Random</a>
                 </p>
             </div>
         </div>

@@ -5,8 +5,8 @@ const Reverso = require('reverso-api');
 const reverso = new Reverso();
 
 // Schemas from Mongoose
-const Verb = require('../models/verb');
-const CookieVerb = require('../models/cookieVerb');
+const Verb = require('/models/verb');
+const CookieVerb = require('/models/cookieVerb');
 
 router.get('/', (req, res) =>{
 

@@ -3,33 +3,22 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mongoose = require('mongoose')
 const dotenv = require('dotenv').config()
 let cors = require('cors')
+let sexyRequire = require('sexy-require')
+const mongoconnecton = require('./util/mongo_connection').connection
 
-let imagesRouter = require('./routes/images');
-
-let indexRouter = require('./routes/index');
-let contextRouter = require('./routes/context')
-
-let vocabulary = require('./routes/vocabulary')
-let vocabularyApiRouter = require('./routes/vocabulary_api')
+// Routers
+let indexRouter = require('/routes/index')
+let verbsRouter = require('/routes/verbs')
+let vocabularyRouter = require('/routes/vocabulary')
+let verbsApiRouter = require('/routes/verbs_api')
+let vocabularyApiRouter = require('/routes/vocabulary_api')
+let contextRouter = require('/routes/utilities/context')
 
 var app = express();
 
-// Connection to MongoDB
-mongoose.connect(process.env.DBCONNECTION, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
-}, (err, client) => {
-  if(err)
-    console.error(err)
-  else
-    console.log("Connected to MongoDB")
-})
-
-// view engine setup
+// Views
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -41,8 +30,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
 app.use('/', indexRouter);
-app.use('/vocabulary', vocabulary)
-app.use('/api/verbs', imagesRouter)
+app.use('/verbs', verbsRouter)
+app.use('/vocabulary', vocabularyRouter)
+app.use('/api/verbs', verbsApiRouter)
 app.use('/api/vocabulary', vocabularyApiRouter)
 app.use('/context', contextRouter)
 

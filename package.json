@@ -32,6 +32,7 @@
     "random-js": "^2.1.0",
     "random.js": "^0.1.0",
     "reverso-api": "^2.16.1",
+    "sexy-require": "^1.1.2",
     "utf8": "^3.0.0"
   }
 }
