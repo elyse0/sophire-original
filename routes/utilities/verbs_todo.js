@@ -11,21 +11,25 @@ const Verb = require('/models/verb');
 router.get('/', function (req, res) {
 
     axios.get("https://api.github.com/repos/kolverar/french_verbs/contents/public/images")
-        .then(response =>{
+        .then(response => {
 
                 // Github Repo Set
                 githubRepoSet = new Set(response.data.map((item) => item.download_url))
+                console.log("Github size:" + githubRepoSet.size)
 
                 // Local API
-                Verb.find({},{'_id': false,'imageURL': true}).sort({nameUTF8: 1}).exec(function (err, data) {
+                Verb.find({}, {'_id': false, 'imageURL': true}).sort({nameUTF8: 1}).exec(function (err, data) {
 
-                    if(err)
+                    if (err)
                         res.status(500).json({mensaje: "error!"})
-                    else{
+                    else {
                         // Create array of imageURLs and convert it to a Set
                         dbVerbsSet = new Set(data.map((item) => item.imageURL))
+                        console.log("Local size:" + dbVerbsSet.size)
 
-                        // Get difference between githubRepoSet and dbVerbsSet and convert it to JSON
+                        // Get difference between githubRepoSet and dbVerbsSet and convert it to
+                        console.log("Difference: ")
+                        console.log(setDifference(githubRepoSet, dbVerbsSet))
                         jsonDifference = arrayToJson(Array.from(setDifference(githubRepoSet, dbVerbsSet)))
 
                         res.status(200).json(jsonDifference)

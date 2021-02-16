@@ -1,4 +1,3 @@
-
 <style>
     .card {
         width: 25vw;
@@ -7,8 +6,9 @@
 
 <div class="container is-fluid">
     <div class="notification">
+        {{#if verbs}}
+            <h1 class="title">Verbs</h1>
         <div class="task-container columns is-multiline">
-
             {{#each verbs}}
                 <div class="column">
                     <div class="card">
@@ -27,6 +27,31 @@
                     </div>
                 </div>
             {{/each}}
+        {{/if}}
         </div>
+
+        {{#if vocabulary}}
+            <h1 class="title">Vocabulary</h1>
+        <div class="task-container columns is-multiline">
+            {{#each vocabulary}}
+                <div class="column">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="{{imageURL}}" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <p class="title is-4">{{name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        {{/if}}
     </div>
 </div>
