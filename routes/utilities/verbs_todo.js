@@ -10,7 +10,7 @@ const Verb = require('/models/verb');
 // GET /todo  - Get list of verbs left to add to database
 router.get('/', function (req, res) {
 
-    axios.get("https://api.github.com/repos/kolverar/french_verbs/contents/public/images")
+    axios.get("https://api.github.com/repos/elyse0/french_verbs/contents/public/images")
         .then(response => {
 
                 // Github Repo Set
