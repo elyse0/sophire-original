@@ -6,7 +6,7 @@ const cdn = require('/util/cdn')
 
 const Verb = require('/models/verb');
 
-const CDN = cdn.URL + "/images/"
+const CDN = cdn.URL + "/verbs/"
 
 // POST / - Add a new verb providing nameUTF8 and name
 router.post('/', apiAuth.checkJwt , (req, res) => {
