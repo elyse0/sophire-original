@@ -1,3 +1,3 @@
-const URL = "https://raw.githubusercontent.com/elyse0/french_verbs/master/public"
+const URL = "https://raw.githubusercontent.com/elyse0/suffire_resources/main"
 
 module.exports = {URL}
