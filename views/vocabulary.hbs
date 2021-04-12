@@ -30,6 +30,9 @@
                 <div class="task-container columns is-multiline">
 
                     {{#each vocabulary}}
+                    <a href="https://french-verbs.herokuapp.com/vocabulaire/{{category}}/{{nameUTF8}}"
+                       target="_blank"
+                       style="text-decoration: none;">
                         <div class="column">
                             <div class="card">
                                 <div class="card-image">
@@ -46,6 +49,7 @@
                                 </div>
                             </div>
                         </div>
+                    </a>
                     {{/each}}
                 </div>
             </div>

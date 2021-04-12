@@ -13,8 +13,8 @@ router.use('/', mainpage)
 router.use('/api', api)
 router.use('/search', search)
 router.use('/admin', admin)
-router.use('/verbs_todo', verbs_todo)
-router.use('/vocabulary_todo', vocabulary_todo)
+router.use('/verbes_a_faire', verbs_todo)
+router.use('/vocabulaire_a_faire', vocabulary_todo)
 router.use('/context', context)
 
 module.exports = router;

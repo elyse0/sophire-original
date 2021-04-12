@@ -1,10 +1,10 @@
-
 <style>
     .card {
         margin: auto;
         width: 37vw;
     }
-    .center{
+
+    .center {
         margin: auto;
     }
 </style>
@@ -13,18 +13,23 @@
     <div class="notification">
         <div class="columns is-centered">
             <div class="column">
-                <div class="card center">
-                    <div class="card-image">
-                        <figure class="image">
-                            <img src="{{image.imageURL}}" alt="Placeholder image">
-                        </figure>
+                <a href="https://french-verbs.herokuapp.com/verbes/{{image.nameUTF8}}"
+                   target="_blank"
+                   style="text-decoration: none;">
+                    <div class="card center">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="{{image.imageURL}}" alt="Placeholder image">
+                            </figure>
+                        </div>
                     </div>
-                </div>
 
-                <p style="text-align: center">
-                    <br>
-                <a href='{{path}}' class="button {{color}} is-outlined is-rounded is-medium is-fullwidth">Random</a>
-                </p>
+                    <p style="text-align: center">
+                        <br>
+                        <a href='{{path}}'
+                           class="button {{color}} is-outlined is-rounded is-medium is-fullwidth">Random</a>
+                    </p>
+                </a>
             </div>
         </div>
     </div>

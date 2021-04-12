@@ -1,4 +1,3 @@
-
 <style>
     .card {
         width: 25vw;
@@ -15,7 +14,7 @@
         </ul>
     </div>
 
-    <h1 class="title" >{{title_content}}</h1>
+    <h1 class="title">{{title_content}}</h1>
 
     <div class="notification">
 
@@ -23,20 +22,24 @@
 
             {{#each verbs}}
                 <div class="column">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image">
-                                <img src="{{imageURL}}" alt="Placeholder image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-content">
-                                    <p class="title is-4">{{name}}</p>
+                    <a href="https://french-verbs.herokuapp.com/verbes/{{nameUTF8}}"
+                       target="_blank"
+                       style="text-decoration: none;">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image">
+                                    <img src="{{imageURL}}" alt="Placeholder image">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class="title is-4">{{name}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             {{/each}}
         </div>

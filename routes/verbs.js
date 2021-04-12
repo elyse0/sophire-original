@@ -7,6 +7,7 @@ const verbsInfo = require('/routes/verbs/verbs_info')
 
 router.use('/', verbsIndex)
 router.use('/random', verbsRandom)
+router.use('/aleatoire', verbsRandom)
 router.use('/', verbsInfo)
 
 module.exports = router;

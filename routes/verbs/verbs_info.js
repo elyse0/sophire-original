@@ -11,9 +11,11 @@ router.get('/:verbID', (req, res) => {
 
         if(err)
             res.render('404')
-        else {
-            res.render('verbs_info', {verb: data})
-        }
+
+        if(data == null)
+            res.render('404')
+
+        res.render('verbs_info', {verb: data})
     })
 })
 

@@ -63,7 +63,7 @@ router.get('/', function(req, res) {
 
                                 res.render('random', {
                                     image: selected_verb,
-                                    path: "/verbs/random",
+                                    path: "/verbs/aleatoire",
                                     color: "is-primary"
                                 });
                             }
@@ -88,7 +88,7 @@ router.get('/', function(req, res) {
                                     res.status(404).json({mensaje:"Error deleting cookie"});
                                 else{
                                     console.log("Cookie deleted")
-                                    res.redirect('/verbs/random');
+                                    res.redirect('/verbs/aleatoire');
                                 }
                             })
                         }else{
@@ -118,7 +118,7 @@ router.get('/', function(req, res) {
                             // Return selected image
                             res.render('random', {
                                 image: selected_verb,
-                                path: "/verbs/random",
+                                path: "/verbs/aleatoire",
                                 color: "is-primary"
                             });
                         }

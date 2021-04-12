@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
             res.render('404')
         else
             res.render('vocabulary', {
-                title: 'Suffire | French verbs',
+                title: 'Suffire | Verbes et vocabulaire française',
                 vocabulary: data,
                 indexes: jsonIndexes
             });

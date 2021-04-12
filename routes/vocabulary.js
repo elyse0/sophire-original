@@ -8,6 +8,7 @@ const vocabularyInfo = require('/routes/vocabulary/vocabulary_info')
 
 router.use('/', vocabularyIndex)            // Path: /vocabulary/
 router.use('/random', vocabularyRandom)     // Path: /vocabulary/random
+router.use('/aleatoire', vocabularyRandom)     // Path: /vocabulary/aleatoire
 router.use('/', vocabularyCategories)       // Path: /vocabulary/:category
 router.use('/', vocabularyInfo)   // Path: /vocabulary/:category/id
 

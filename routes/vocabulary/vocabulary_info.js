@@ -14,12 +14,11 @@ router.get('/:category/:vocabularyID', (req, res) => {
 
         if(err)
             res.status(404).json({message: "Error!"})
-        else {
-            if(data === null)
-                res.render('404')
-            else
-                res.render('vocabulary_info', {vocabulary: data})
-        }
+
+        if(data === null)
+            res.render('404')
+
+        res.render('vocabulary_info', {vocabulary: data})
     })
 })
 

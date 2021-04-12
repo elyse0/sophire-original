@@ -30,16 +30,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
 app.use('/', indexRouter);
-app.use('/verbs', verbsRouter)
-app.use('/vocabulary', vocabularyRouter)
-app.use('/api/verbs', verbsApiRouter)
-app.use('/api/vocabulary', vocabularyApiRouter)
+app.use('/verbes', verbsRouter)
+app.use('/vocabulaire', vocabularyRouter)
+app.use('/api/verbes', verbsApiRouter)
+app.use('/api/vocabulaire', vocabularyApiRouter)
 app.use('/context', contextRouter)
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+app.use(function (req, res, next) {
+  res.render('404')
+})
 
 // error handler
 app.use(function(err, req, res, next) {

@@ -19,19 +19,16 @@ router.get('/:category', function(req, res) {
 
         if(err)
             res.status(404).json({message: "error"})
-        else
-        {
-            if(data.length === 0){
-                res.render('404')
-            }else{
-                res.render('vocabulary', {
-                    title: 'Suffire | French verbs',
-                    indexes: jsonIndexes,
-                    vocabulary: data,
-                    category: categoryRequested.capitalize()
-                });
-            }
-        }
+
+        if(data.length === 0)
+            res.render('404')
+
+        res.render('vocabulary', {
+            title: 'Suffire | Verbes et vocabulaire française',
+            indexes: jsonIndexes,
+            vocabulary: data,
+            category: categoryRequested.capitalize()
+        });
     })
 });
 
