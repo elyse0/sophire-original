@@ -1,4 +1,5 @@
 const Vocabulary = require('/models/vocabulary')
+const normalization = require("./normalization");
 
 function getIndexes(callback){
 
@@ -6,7 +7,7 @@ function getIndexes(callback){
         return this.charAt(0).toUpperCase() + this.slice(1)
     }
 
-    Vocabulary.distinct('category', (err, data) => {
+    Vocabulary.distinct('category', (err, categories) => {
 
         if(err)
             res.status(404).json({message: "error"})
@@ -14,10 +15,10 @@ function getIndexes(callback){
         {
             arrayTemp = []
 
-            for(let i = 0; i < data.length; i++){
+            for(let i = 0; i < categories.length; i++){
                 jsonTemp = {}
-                jsonTemp['index'] = data[i].capitalize()
-                jsonTemp['path'] = data[i].replace(' ', '-')
+                jsonTemp['index'] = categories[i].capitalize()
+                jsonTemp['path'] = normalization.getNormalizedCategory(categories[i])
                 arrayTemp.push(jsonTemp)
             }
 

@@ -5,18 +5,18 @@ const Vocabulary = require('/models/vocabulary')
 
 router.get('/:category/:vocabularyID', (req, res) => {
 
-    let requestedCategory = req.params.category.replace('-', " ")
-    let requestedVocabulary = req.params.vocabularyID.replace('-', ".")
+    let requestedCategory = req.params.category
+    let requestedVocabulary = req.params.vocabularyID
     console.log("Category: " + requestedCategory)
     console.log("Vocabulary: " + requestedVocabulary)
 
-    Vocabulary.findOne({category: requestedCategory, nameUTF8: requestedVocabulary}).sort({nameUTF8: 1}).exec((err, data) => {
+    Vocabulary.findOne({categoryUTF8: requestedCategory, nameUTF8: requestedVocabulary}).sort({nameUTF8: 1}).exec((err, data) => {
 
         if(err)
-            res.status(404).json({message: "Error!"})
+            return res.status(404).json({message: "Error!"})
 
         if(data === null)
-            res.render('404')
+            return res.render('404')
 
         res.render('vocabulary_info', {vocabulary: data})
     })

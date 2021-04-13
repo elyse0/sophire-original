@@ -16,7 +16,7 @@
                 </p>
                 <ul class="menu-list">
                     {{#each indexes}}
-                        <li><a href="/vocabulary/{{path}}">{{index}}</a></li>
+                        <li><a href="/vocabulaire/{{path}}">{{index}}</a></li>
                     {{/each}}
                 </ul>
             </aside>
@@ -30,7 +30,7 @@
                 <div class="task-container columns is-multiline">
 
                     {{#each vocabulary}}
-                    <a href="https://french-verbs.herokuapp.com/vocabulaire/{{category}}/{{nameUTF8}}"
+                    <a href="/vocabulaire/{{categoryUTF8}}/{{nameUTF8}}"
                        target="_blank"
                        style="text-decoration: none;">
                         <div class="column">

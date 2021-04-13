@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+
+// Util
 const apiAuth = require('/util/auth_api')
 const cdn = require('/util/cdn')
+let normalization = require('/util/normalization')
 
 const Vocabulary = require('/models/vocabulary');
 const CDN = cdn.URL + "/vocabulary/"
@@ -10,7 +13,7 @@ const CDN = cdn.URL + "/vocabulary/"
 // PATCH / - Update verb info providing nameUTF8 and new name
 router.patch('/', apiAuth.checkJwt, (req, res) => {
 
-    nameUTF8 = req.body.nameUTF8
+    let nameUTF8 = req.body.nameUTF8
 
     // Check if verb exists
     Vocabulary.findOne({'nameUTF8': nameUTF8}, (error, data) => {
@@ -26,7 +29,8 @@ router.patch('/', apiAuth.checkJwt, (req, res) => {
                             name: req.body.name,
                             nameUTF8: nameUTF8,
                             imageURL: CDN + nameUTF8 + ".png",
-                            category: req.body.category
+                            category: req.body.category,
+                            categoryUTF8: req.body.categoryUTF8
                         }
                     )
 

@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+
+// Util
 const apiAuth = require('/util/auth_api')
 const cdn = require('/util/cdn')
+let normalization = require('/util/normalization')
 
 const Verb = require('/models/verb');
 
@@ -11,7 +14,7 @@ const CDN = cdn.URL + "/verbs/"
 // POST / - Add a new verb providing nameUTF8 and name
 router.post('/', apiAuth.checkJwt , (req, res) => {
 
-    nameUTF8 = req.body.nameUTF8
+    let nameUTF8 = normalization.getNormalizedName(req.body.name)
 
     // Check if verb exists
     Verb.find({'nameUTF8': nameUTF8}, (error, data) => {

@@ -9,7 +9,7 @@
     <div class="tabs">
         <ul>
             {{#each indexes}}
-                <li><a href="/verbs?index={{index}}">{{index}}</a></li>
+                <li><a href="/verbes?index={{index}}">{{index}}</a></li>
             {{/each}}
         </ul>
     </div>
@@ -22,7 +22,7 @@
 
             {{#each verbs}}
                 <div class="column">
-                    <a href="https://french-verbs.herokuapp.com/verbes/{{nameUTF8}}"
+                    <a href="/verbes/{{nameUTF8}}"
                        target="_blank"
                        style="text-decoration: none;">
                         <div class="card">

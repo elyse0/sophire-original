@@ -11,47 +11,55 @@
         <div class="task-container columns is-multiline">
             {{#each verbs}}
                 <div class="column">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image">
-                                <img src="{{imageURL}}" alt="Placeholder image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-content">
-                                    <p class="title is-4">{{name}}</p>
+                    <a href="/verbes/{{nameUTF8}}"
+                       target="_blank"
+                       style="text-decoration: none;">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image">
+                                    <img src="{{imageURL}}" alt="Placeholder image">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <p class="title is-4">{{name}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             {{/each}}
         {{/if}}
-        </div>
+    </div>
 
         {{#if vocabulary}}
             <h1 class="title">Vocabulary</h1>
-        <div class="task-container columns is-multiline">
-            {{#each vocabulary}}
-                <div class="column">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image">
-                                <img src="{{imageURL}}" alt="Placeholder image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-content">
-                                    <p class="title is-4">{{name}}</p>
+            <div class="task-container columns is-multiline">
+                {{#each vocabulary}}
+                    <div class="column">
+                        <a href="/vocabulaire/{{categoryUTF8}}/{{nameUTF8}}"
+                           target="_blank"
+                           style="text-decoration: none;">
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image">
+                                        <img src="{{imageURL}}" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <div class="media">
+                                        <div class="media-content">
+                                            <p class="title is-4">{{name}}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                </div>
-            {{/each}}
-        </div>
+                {{/each}}
+            </div>
         {{/if}}
     </div>
 </div>

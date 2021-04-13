@@ -11,7 +11,7 @@ const CDN = cdn.URL + "/images/"
 // PATCH / - Update verb info providing nameUTF8 and new name
 router.patch('/', apiAuth.checkJwt, (req, res) => {
 
-    nameUTF8 = req.body.nameUTF8
+    let nameUTF8 = req.body.nameUTF8
 
     // Check if verb exists
     Verb.findOne({'nameUTF8': nameUTF8}, (error, data) => {

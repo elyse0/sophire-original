@@ -9,18 +9,21 @@ let vocabularyIndexes = require('/util/vocabulary_indexes')
 router.get('/', function(req, res) {
 
     let jsonIndexes = {}
-    vocabularyIndexes.getIndexes((res) => jsonIndexes = res)
+    vocabularyIndexes.getIndexes((indexes) => {
 
-    Vocabulary.find().sort({nameUTF8: 1}).exec(function (err, data) {
+        jsonIndexes = indexes
 
-        if(err)
-            res.render('404')
-        else
-            res.render('vocabulary', {
-                title: 'Suffire | Verbes et vocabulaire française',
-                vocabulary: data,
-                indexes: jsonIndexes
-            });
+        Vocabulary.find().sort({nameUTF8: 1}).exec(function (err, data) {
+
+            if(err)
+                res.render('404')
+            else
+                res.render('vocabulary', {
+                    title: 'Suffire | Verbes et vocabulaire française',
+                    vocabulary: data,
+                    indexes: jsonIndexes
+                });
+        })
     })
 });
 

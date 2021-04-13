@@ -6,7 +6,8 @@ let vocabularySchema = Schema({
     name: String,
     nameUTF8: String,
     imageURL: String,
-    category: String
+    category: String,
+    categoryUTF8: String
 }, {
     versionKey: false
 });
