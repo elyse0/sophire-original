@@ -24,7 +24,7 @@ router.get('/:category', function(req, res) {
                 return res.render('404')
 
             res.render('vocabulary', {
-                title: 'Suffire | Verbes et vocabulaire française',
+                title: 'Sophire | Verbes et vocabulaire française',
                 indexes: jsonIndexes,
                 vocabulary: data,
                 category: data[0].category
