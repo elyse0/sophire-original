@@ -61,9 +61,9 @@ router.get('/', function(req, res) {
                                     {verbsID: saved_cookie_data._id, vocabularyID: vocabularyID},
                                     {sameSite: 'strict'})
 
-                                res.render('random', {
+                                res.render('random_verb', {
                                     image: selected_verb,
-                                    path: "/verbs/aleatoire",
+                                    path: "/verbes/aleatoire",
                                     color: "is-primary"
                                 });
                             }
@@ -88,7 +88,7 @@ router.get('/', function(req, res) {
                                     res.status(404).json({mensaje:"Error deleting cookie"});
                                 else{
                                     console.log("Cookie deleted")
-                                    res.redirect('/verbs/aleatoire');
+                                    res.redirect('/verbes/aleatoire');
                                 }
                             })
                         }else{
@@ -116,9 +116,9 @@ router.get('/', function(req, res) {
                                 });
 
                             // Return selected image
-                            res.render('random', {
+                            res.render('random_verb', {
                                 image: selected_verb,
-                                path: "/verbs/aleatoire",
+                                path: "/verbes/aleatoire",
                                 color: "is-primary"
                             });
                         }

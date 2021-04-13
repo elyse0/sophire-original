@@ -15,7 +15,9 @@ router.get('/:verbID', (req, res) => {
         if(data == null)
             res.render('404')
 
-        res.render('verbs_info', {verb: data})
+        res.render('verbs_info', {
+            verb: data,
+            index: data.nameUTF8.charAt(0)})
     })
 })
 

@@ -1,0 +1,36 @@
+<style>
+    .card {
+        margin: auto;
+        width: 37vw;
+    }
+
+    .center {
+        margin: auto;
+    }
+</style>
+
+<div class="container is-fluid">
+    <div class="notification">
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="card center">
+                    <a href="/verbes/{{image.nameUTF8}}"
+                       target="_blank"
+                       style="text-decoration: none;">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="{{image.imageURL}}" alt="Placeholder image">
+                            </figure>
+                        </div>
+                    </a>
+                </div>
+
+                <p style="text-align: center">
+                    <br>
+                    <a href='{{path}}'
+                       class="button {{color}} is-outlined is-rounded is-medium is-fullwidth">Random</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

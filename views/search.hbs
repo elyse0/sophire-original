@@ -11,10 +11,10 @@
         <div class="task-container columns is-multiline">
             {{#each verbs}}
                 <div class="column">
-                    <a href="/verbes/{{nameUTF8}}"
-                       target="_blank"
-                       style="text-decoration: none;">
-                        <div class="card">
+                    <div class="card">
+                        <a href="/verbes/{{nameUTF8}}"
+                           target="_blank"
+                           style="text-decoration: none;">
                             <div class="card-image">
                                 <figure class="image">
                                     <img src="{{imageURL}}" alt="Placeholder image">
@@ -27,8 +27,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             {{/each}}
         {{/if}}
@@ -39,10 +39,11 @@
             <div class="task-container columns is-multiline">
                 {{#each vocabulary}}
                     <div class="column">
-                        <a href="/vocabulaire/{{categoryUTF8}}/{{nameUTF8}}"
-                           target="_blank"
-                           style="text-decoration: none;">
-                            <div class="card">
+
+                        <div class="card">
+                            <a href="/vocabulaire/{{categoryUTF8}}/{{nameUTF8}}"
+                               target="_blank"
+                               style="text-decoration: none;">
                                 <div class="card-image">
                                     <figure class="image">
                                         <img src="{{imageURL}}" alt="Placeholder image">
@@ -55,8 +56,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 {{/each}}
             </div>

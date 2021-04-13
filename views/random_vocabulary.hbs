@@ -13,23 +13,23 @@
     <div class="notification">
         <div class="columns is-centered">
             <div class="column">
-                <a href="https://french-verbs.herokuapp.com/verbes/{{image.nameUTF8}}"
-                   target="_blank"
-                   style="text-decoration: none;">
-                    <div class="card center">
+                <div class="card center">
+                    <a href="/vocabulaire/{{image.categoryUTF8}}/{{image.nameUTF8}}"
+                       target="_blank"
+                       style="text-decoration: none;">
                         <div class="card-image">
                             <figure class="image">
                                 <img src="{{image.imageURL}}" alt="Placeholder image">
                             </figure>
                         </div>
-                    </div>
+                    </a>
+                </div>
 
-                    <p style="text-align: center">
-                        <br>
-                        <a href='{{path}}'
-                           class="button {{color}} is-outlined is-rounded is-medium is-fullwidth">Random</a>
-                    </p>
-                </a>
+                <p style="text-align: center">
+                    <br>
+                    <a href='{{path}}'
+                       class="button {{color}} is-outlined is-rounded is-medium is-fullwidth">Random</a>
+                </p>
             </div>
         </div>
     </div>
