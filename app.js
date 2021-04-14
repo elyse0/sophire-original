@@ -14,6 +14,7 @@ let verbsRouter = require('/routes/verbs')
 let vocabularyRouter = require('/routes/vocabulary')
 let verbsApiRouter = require('/routes/verbs_api')
 let vocabularyApiRouter = require('/routes/vocabulary_api')
+let verb_conjugation_api_router = require('/routes/verb_conjugation_api')
 let contextRouter = require('/routes/utilities/context')
 
 var app = express();
@@ -34,6 +35,7 @@ app.use('/verbes', verbsRouter)
 app.use('/vocabulaire', vocabularyRouter)
 app.use('/api/verbes', verbsApiRouter)
 app.use('/api/vocabulaire', vocabularyApiRouter)
+app.use('/api/conjugaison_verbe/', verb_conjugation_api_router)
 app.use('/context', contextRouter)
 
 // catch 404 and forward to error handler

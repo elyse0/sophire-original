@@ -1,10 +1,10 @@
-
 <style>
     .card {
         margin: auto;
         width: 37vw;
     }
-    .center{
+
+    .center {
         margin: auto;
     }
 </style>
@@ -12,7 +12,8 @@
 <div class="container is-fluid">
     <div class="notification">
 
-        <h1 class="title has-centered-text"><a href="/verbes?index={{index}}" style="text-decoration: none;">{{index}} /</a> {{verb.name}}</h1>
+        <h1 class="title has-centered-text"><a href="/verbes?index={{index}}" style="text-decoration: none;
+            text-transform: uppercase;">{{index}} /</a> {{verb.name}}</h1>
 
         <div class="columns is-centered">
             <div class="column">
@@ -24,6 +25,346 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="container is-fluid">
+    <div class="notification">
+
+        <div class="subtitle">Indicatif</div>
+
+        <div class="columns">
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Présent</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.indicatif.present.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.present.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.present.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.present.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.present.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.present.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Imparfait</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.indicatif.imparfait.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.imparfait.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.imparfait.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.imparfait.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.imparfait.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.imparfait.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Passé simple</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.indicatif.passe_simple.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_simple.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_simple.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_simple.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_simple.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_simple.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Futur</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.indicatif.futur_simple.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.futur_simple.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.futur_simple.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.futur_simple.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.futur_simple.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.futur_simple.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Passé composé</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.indicatif.passe_compose.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_compose.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_compose.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_compose.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_compose.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_compose.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Plus-que-parfait</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.indicatif.plus_que_parfait.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.plus_que_parfait.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.plus_que_parfait.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.plus_que_parfait.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.plus_que_parfait.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.plus_que_parfait.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Passé antérieur</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.indicatif.passe_anterieur.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_anterieur.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_anterieur.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_anterieur.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_anterieur.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.passe_anterieur.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Futur antérieur</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.indicatif.futur_anterieur.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.futur_anterieur.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.futur_anterieur.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.futur_anterieur.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.futur_anterieur.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.indicatif.futur_anterieur.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="subtitle">Subjonctif</div>
+
+        <div class="columns">
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Présent</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.subjonctif.present.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.present.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.present.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.present.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.present.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.present.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Imparfait</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.subjonctif.imparfait.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.imparfait.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.imparfait.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.imparfait.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.imparfait.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.imparfait.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Plus-que-parfait</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.subjonctif.plus_que_parfait.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.plus_que_parfait.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.plus_que_parfait.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.plus_que_parfait.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.plus_que_parfait.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.plus_que_parfait.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Passé</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.subjonctif.passe.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.passe.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.passe.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.passe.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.passe.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.subjonctif.passe.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="subtitle">Conditionnel</div>
+
+        <div class="columns">
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Présent</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.conditionnel.present.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.conditionnel.present.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.conditionnel.present.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.conditionnel.present.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.conditionnel.present.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.conditionnel.present.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Passé</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.conditionnel.passe.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.conditionnel.passe.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.conditionnel.passe.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.conditionnel.passe.[3]}}</td></tr>
+                    <tr><td>{{conjugation.moods.conditionnel.passe.[4]}}</td></tr>
+                    <tr><td>{{conjugation.moods.conditionnel.passe.[5]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="subtitle">Impératif</div>
+
+        <div class="columns">
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Présent</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.imperatif.imperatif_present.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.imperatif.imperatif_present.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.imperatif.imperatif_present.[2]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Passé</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.imperatif.imperatif_passe.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.imperatif.imperatif_passe.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.imperatif.imperatif_passe.[2]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="subtitle">Participe</div>
+
+        <div class="columns">
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Présent</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.participe.participe_present.[0]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Passé</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.participe.participe_passe.[0]}}</td></tr>
+                    <tr><td>{{conjugation.moods.participe.participe_passe.[1]}}</td></tr>
+                    <tr><td>{{conjugation.moods.participe.participe_passe.[2]}}</td></tr>
+                    <tr><td>{{conjugation.moods.participe.participe_passe.[3]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="subtitle">Infinitif</div>
+
+        <div class="columns">
+            <div class="column">
+                <table class="table is-bordered">
+                    <thead>
+                    <tr><th>Présent</th></tr>
+                    </thead>
+
+                    <tbody>
+                    <tr><td>{{conjugation.moods.infinitif.infinitif_present.[0]}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>
