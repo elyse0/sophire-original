@@ -2,45 +2,61 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
+// Util
 let setDifference = require('/util/set_operations').setDifference
 let arrayToJson = require('/util/array_to_json').arrayToJson
 let repo_api = require('/util/repo_api')
 
+// Database model
 const Verb = require('/models/verb');
+
+let get_set_of_images_in_repository = async function () {
+
+    let repo_api_response = await axios.get(repo_api.URL + '/verbs')
+
+    // Create a set from the images on the Github Repo
+    let github_repo_set = new Set(repo_api_response.data.map((entry) => entry.download_url))
+    console.log("Number of images in Github Repo: " + github_repo_set.size)
+
+    return github_repo_set
+}
+
+let get_set_of_images_in_database = async function () {
+
+    let verbs = await Verb.find({}, {'_id': false, 'imageURL': true}).sort({nameUTF8: 1})
+
+    // Create a set from the images on the Database
+    let database_verbs_set = new Set(verbs.map((verb) => verb.imageURL))
+    console.log("Number of images in Database: " + database_verbs_set.size)
+
+    return database_verbs_set
+}
+
+let get_verbs_todo_json = async function () {
+
+    let github_repo_set = await get_set_of_images_in_repository()
+    let database_verbs_set = await get_set_of_images_in_database()
+
+    // Calculate difference between githubRepoSet and dbVerbsSet
+    let verbs_todo_set = setDifference(github_repo_set, database_verbs_set)
+    let verbs_todo_array = Array.from(verbs_todo_set)
+    console.log("Difference: " + verbs_todo_array)
+
+    return arrayToJson(verbs_todo_array)
+}
 
 // GET /todo  - Get list of verbs left to add to database
 router.get('/', function (req, res) {
 
-    axios.get(repo_api.URL + "/verbs")
-        .then(response => {
+    get_verbs_todo_json()
+        .then(verbs_todo_json => {
 
-                // Github Repo Set
-                githubRepoSet = new Set(response.data.map((item) => item.download_url))
-                console.log("Github size:" + githubRepoSet.size)
+            return res.status(200).json(verbs_todo_json)
+        })
+        .catch(err => {
 
-                // Local API
-                Verb.find({}, {'_id': false, 'imageURL': true}).sort({nameUTF8: 1}).exec(function (err, data) {
-
-                    if (err)
-                        res.status(500).json({mensaje: "error!"})
-                    else {
-                        // Create array of imageURLs and convert it to a Set
-                        dbVerbsSet = new Set(data.map((item) => item.imageURL))
-                        console.log("Local size:" + dbVerbsSet.size)
-
-                        // Get difference between githubRepoSet and dbVerbsSet and convert it to
-                        console.log("Difference: ")
-                        console.log(setDifference(githubRepoSet, dbVerbsSet))
-                        jsonDifference = arrayToJson(Array.from(setDifference(githubRepoSet, dbVerbsSet)))
-
-                        res.status(200).json(jsonDifference)
-                    }
-                });
-
-            }
-        )
-        .catch(error => {
-            res.status(200).json({message: "Can't get info from repo!"})
+            console.log(err)
+            return res.render('404')
         })
 })
 
