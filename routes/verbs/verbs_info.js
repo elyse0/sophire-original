@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const ColorThief = require('colorthief');
+const convert = require('color-convert');
+
 
 // Util
 const arrayToJson = require('/util/array_to_json').arrayToJson
+const rgbToHex = require('/util/color').rgbToHex
 
 const Verb = require('/models/verb')
 const verb_conjugation = require('/models/verb_conjugation')
@@ -32,6 +36,24 @@ router.get('/:verbID', (req, res) => {
                     index: data.nameUTF8.charAt(0)
                 })
             }
+
+            // // Get predominant color on image
+            //
+            // ColorThief.getColor(data.imageURL)
+            //     .then((color) => {
+            //
+            //         let color_hex = rgbToHex(color)
+            //
+            //         console.log(convert.hex.keyword(color_hex))
+            //
+            //         console.log("Most used color")
+            //         console.log(color)
+            //
+            //     })
+            //     .catch((err) => {
+            //         console.log(err)
+            //
+            //     })
 
             let c = {
 
