@@ -6,7 +6,7 @@ const cdn = require('/util/urls').cdn
 
 const Verb = require('/models/verb');
 
-const CDN = cdn.URL + "/images/"
+const CDN = cdn + "/images/"
 
 // PATCH / - Update verb info providing nameUTF8 and new name
 router.patch('/', apiAuth.checkJwt, (req, res) => {

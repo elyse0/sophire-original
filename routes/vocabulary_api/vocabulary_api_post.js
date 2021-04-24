@@ -8,7 +8,7 @@ const cdn = require('/util/urls').cdn
 let normalization = require('/util/normalization')
 
 const Vocabulary = require('/models/vocabulary');
-const CDN = cdn.URL + "/vocabulary/"
+const CDN = cdn + "/vocabulary/"
 
 // POST / - Add a new vocabulary providing nameUTF8 and name
 router.post('/', apiAuth.checkJwt, (req, res) => {

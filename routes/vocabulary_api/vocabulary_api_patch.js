@@ -8,7 +8,7 @@ const cdn = require('/util/urls').cdn
 let normalization = require('/util/normalization')
 
 const Vocabulary = require('/models/vocabulary');
-const CDN = cdn.URL + "/vocabulary/"
+const CDN = cdn + "/vocabulary/"
 
 // PATCH / - Update verb info providing nameUTF8 and new name
 router.patch('/', apiAuth.checkJwt, (req, res) => {
