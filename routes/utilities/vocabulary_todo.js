@@ -4,14 +4,14 @@ const axios = require('axios');
 
 let setDifference = require('/util/set_operations').setDifference
 let arrayToJson = require('/util/array_to_json').arrayToJson
-let repo_api = require('/util/repo_api')
+let repo_api = require('/util/urls').repo_api
 
 const Vocabulary = require('/models/vocabulary');
 
 // GET /todo  - Get list of verbs left to add to database
 router.get('/', function (req, res) {
 
-    axios.get(repo_api.URL + "/vocabulary")
+    axios.get(repo_api + "/vocabulary")
         .then(response => {
 
                 // Github Repo Set

@@ -5,14 +5,14 @@ const axios = require('axios');
 // Util
 let setDifference = require('/util/set_operations').setDifference
 let arrayToJson = require('/util/array_to_json').arrayToJson
-let repo_api = require('/util/repo_api')
+let repo_api = require('/util/urls').repo_api
 
 // Database model
 const Verb = require('/models/verb');
 
 let get_set_of_images_in_repository = async function () {
 
-    let repo_api_response = await axios.get(repo_api.URL + '/verbs')
+    let repo_api_response = await axios.get(repo_api + '/verbs')
 
     // Create a set from the images on the Github Repo
     let github_repo_set = new Set(repo_api_response.data.map((entry) => entry.download_url))

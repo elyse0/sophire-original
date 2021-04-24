@@ -4,7 +4,7 @@ const axios = require('axios');
 
 // Util
 const apiAuth = require('/util/auth_api')
-const cdn = require('/util/cdn')
+const cdn = require('/util/urls').cdn
 let normalization = require('/util/normalization')
 
 const Vocabulary = require('/models/vocabulary');

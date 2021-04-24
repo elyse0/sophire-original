@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const apiAuth = require('/util/auth_api')
-const cdn = require('/util/cdn')
+const cdn = require('/util/urls').cdn
 
 const Verb = require('/models/verb');
 
