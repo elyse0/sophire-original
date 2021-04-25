@@ -7,7 +7,10 @@ let getNormalizedName = function (text){
 
     let normalizedText = getNormalizedText(text)
 
-    return normalizedText.replace(/ /g, '.')
+    normalizedText = normalizedText.replace(/'/, '.')
+    normalizedText = normalizedText.replace(/ /g, '.')
+
+    return normalizedText
 }
 
 let getNormalizedCategory = function (text){
