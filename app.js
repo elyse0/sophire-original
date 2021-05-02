@@ -11,6 +11,7 @@ const mongoconnecton = require('./util/mongo_connection').connection
 // Routers
 let indexRouter = require('/routes/index')
 let verbsRouter = require('/routes/verbs')
+let videos_router = require('/routes/videos')
 let vocabularyRouter = require('/routes/vocabulary')
 let verbsApiRouter = require('/routes/verbs_api')
 let vocabularyApiRouter = require('/routes/vocabulary_api')
@@ -32,6 +33,7 @@ app.use(cors())
 
 app.use('/', indexRouter);
 app.use('/verbes', verbsRouter)
+app.use('/videos', videos_router)
 app.use('/vocabulaire', vocabularyRouter)
 app.use('/api/verbes', verbsApiRouter)
 app.use('/api/vocabulaire', vocabularyApiRouter)
