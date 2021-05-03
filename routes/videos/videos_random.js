@@ -2,19 +2,22 @@ const express = require('express');
 const router = express.Router();
 
 // Util
-let get_playlist_items = require('/util/youtube_api').get_playlist_items
+const get_videos = require('/routes/videos_api/videos_api_get').get_videos
 let random_integer = require('/util/random_integer').forceRandomInteger
 
-router.get('/', function(req, res) {
+router.get('/', function (req, res) {
 
-    get_playlist_items("PLS5_eiO1TY81hW6XPzlWeW_BuCvAv0yDe").then((items) => {
+    get_videos()
+        .then((videos) => {
 
-        console.log("Length: " + items.length)
+            let video_selected = videos[random_integer(0, videos.length - 1)]
+            return res.redirect("https://youtu.be/" + video_selected.video_id)
+        })
+        .catch((error) => {
 
-        let video_selected = items[random_integer(0, items.length - 1)]
-
-        res.redirect(video_selected)
-    })
+            console.log(error)
+            return res.render('404')
+        })
 })
 
 module.exports = router;

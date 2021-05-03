@@ -5,7 +5,7 @@ let get_playlist_items = async function (playlist_id,
                                          key = process.env.youtube_api_key) {
 
     let request = "https://youtube.googleapis.com/youtube/v3/playlistItems" +
-        "?part=contentDetails&part=id" +
+        "?part=snippet" +
         "&maxResults=50"
 
     if (page_token) {
@@ -18,7 +18,16 @@ let get_playlist_items = async function (playlist_id,
 
     let response = await axios.get(request)
 
-    let array_items = response.data.items.map((item) => "https://youtu.be/" + item.contentDetails.videoId)
+    let array_items = response.data.items.map((item) => {
+
+        return {
+            video_id: item.snippet.resourceId.videoId,
+            description: item.snippet.description,
+            thumbnail_default_url: item.snippet.thumbnails.default.url,
+            channel_name: item.snippet.videoOwnerChannelTitle,
+            channel_id: item.snippet.videoOwnerChannelId
+        }
+    })
 
     if(response.data.nextPageToken){
 
