@@ -1,0 +1,37 @@
+<style>
+    .card {
+        width: 25vw;
+    }
+</style>
+
+<div class="container is-fluid">
+
+    <div class="columns">
+        <div class="column">
+            <div class="notification">
+
+                <h1 class="title has-centered-text"><a href="/videos" style="text-decoration: none;">Vidéos /
+                </a> {{channel_name}}</h1>
+
+                <div class="tabs">
+                    <ul>
+                        {{#each indexes}}
+                            <li><a href="?index={{index}}" style="text-decoration: none;">{{index}}</a></li>
+                        {{/each}}
+                    </ul>
+                </div>
+
+                <div class="task-container columns is-multiline">
+
+                    {{#each videos}}
+                        <div class="column">
+                            <iframe width="378" height="252"
+                                    src="https://www.youtube.com/embed/{{video_id}}?cc_lang_pref=fr&cc_load_policy=1">
+                            </iframe>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

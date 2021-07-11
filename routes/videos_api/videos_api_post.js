@@ -5,6 +5,7 @@ const router = express.Router();
 const apiAuth = require('/util/auth_api')
 const set_difference = require('/util/set_operations').setDifference
 let get_playlist_items = require('/util/youtube_api').get_playlist_items
+let update_youtube_channels_db = require('/util/youtube_channels_db').update_youtube_channels_db
 
 // Model
 const Videos = require('/models/video')
@@ -52,7 +53,10 @@ router.post('/', apiAuth.checkJwt, (req, res) => {
                 save_video(difference[i]).then(r => console.log(r))
             }
 
-            return res.status(200).json({message: "Items updated"})
+            update_youtube_channels_db().then(() => {
+
+                return res.status(200).json({message: "Items and channels updated"})
+            })
         })
         .catch((error) => {
 

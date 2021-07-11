@@ -1,0 +1,43 @@
+<style>
+    .card {
+        width: 25vw;
+    }
+
+</style>
+
+<div class="container is-fluid">
+
+    <div class="columns">
+        <div class="column">
+            <div class="notification">
+
+                <h1 class="title">Chaines de YouTube</h1>
+
+                <div class="task-container columns is-multiline">
+                    {{#each channels}}
+                        <div class="column">
+                            <a href="/videos/{{channel_path}}" style="text-decoration: none;">
+                                <div class="box" style="width: 350px">
+                                    <article class="media">
+                                        <div class="media-left">
+                                            <figure class="image is-64x64">
+                                                <img src="{{thumbnails.default}}" alt="{{name}}-picture">
+                                            </figure>
+                                        </div>
+                                        <div class="media-content">
+                                            <div class="content">
+                                                <h4 class="title">{{name}}</h4>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </a>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://apis.google.com/js/platform.js"></script>

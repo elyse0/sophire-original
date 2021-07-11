@@ -23,4 +23,19 @@ let getNormalizedCategory = function (text){
     return normalizedText
 }
 
-module.exports = {getNormalizedText, getNormalizedName, getNormalizedCategory}
+let get_normalized_youtube_channel = function(youtube_channel){
+
+    let normalized_channel = getNormalizedText(youtube_channel)
+
+    normalized_channel =  normalized_channel.replace(/ - /, '-')
+    normalized_channel =  normalized_channel.replace(/ +/g, '-')
+    normalized_channel = normalized_channel.replace(/'/, '.')
+    normalized_channel = normalized_channel.replace(/’/, '.')
+    normalized_channel = normalized_channel.replace(/,/, '')
+    normalized_channel = normalized_channel.toLowerCase()
+
+    return normalized_channel
+}
+
+module.exports = {getNormalizedText, getNormalizedName, getNormalizedCategory,
+get_normalized_youtube_channel}
