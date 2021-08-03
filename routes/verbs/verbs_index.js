@@ -26,7 +26,7 @@ router.get('/', function(req, res) {
                     res.render('404')
                 else
                     res.render('verbs', {
-                        title: 'Sophire | Verbes et vocabulaire française',
+                        title: 'Verbes en français - Sophire',
                         title_content: "All verbs",
                         verbs: data,
                         indexes: jsonIndexes});
@@ -40,7 +40,7 @@ router.get('/', function(req, res) {
                     res.render('404')
                 else
                     res.render('verbs', {
-                        title: 'Sophire | Verbes et vocabulaire française',
+                        title: 'Verbes en français - Sophire',
                         title_content: 'Verbes commençant par ' + index.toUpperCase(),
                         verbs: data,
                         indexes: jsonIndexes});

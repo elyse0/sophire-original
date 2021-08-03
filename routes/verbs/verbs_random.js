@@ -62,6 +62,7 @@ router.get('/', function(req, res) {
                                     {sameSite: 'strict'})
 
                                 res.render('random_verb', {
+                                    title: "Verbe aléatoire - Sophire",
                                     image: selected_verb,
                                     path: "/verbes/aleatoire",
                                     color: "is-primary"
@@ -117,6 +118,7 @@ router.get('/', function(req, res) {
 
                             // Return selected image
                             res.render('random_verb', {
+                                title: "Verbe aléatoire - Sophire",
                                 image: selected_verb,
                                 path: "/verbes/aleatoire",
                                 color: "is-primary"

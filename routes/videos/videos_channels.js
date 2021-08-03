@@ -35,7 +35,7 @@ router.get('/:channel', function (req, res) {
                 }
             }
 
-            Videos.find({channel_name: original_channel_name}).sort({_id: -1}).exec((err, data) => {
+            Videos.find({channel_name: original_channel_name}).sort({date: -1}).exec((err, data) => {
 
                 if (err)
                     return res.render('404')
@@ -69,6 +69,7 @@ router.get('/:channel', function (req, res) {
                 console.log(videos)
 
                 return res.render('videos_info', {
+                    title: "Vidéos de " + original_channel_name + " - Sophire",
                     channel_name: original_channel_name,
                     channel_path: requested_channel,
                     videos: videos,

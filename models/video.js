@@ -5,6 +5,7 @@ let video_schema = Schema({
     id: mongoose.Types.ObjectId,
     video_id: String,
     description: String,
+    date: String,
     thumbnail_default_url: String,
     channel_name: String,
     channel_id: String

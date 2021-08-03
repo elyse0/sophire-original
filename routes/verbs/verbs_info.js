@@ -31,6 +31,7 @@ router.get('/:verbID', (req, res) => {
             if (conjugation == null) {
 
                 return res.render('verbs_info', {
+                    title: "Verbe " + data.name.toUpperCase() + " - Sophire",
                     verb: data,
                     conjugation: conjugation,
                     index: data.nameUTF8.charAt(0)
@@ -94,6 +95,7 @@ router.get('/:verbID', (req, res) => {
             }
 
             res.render('verbs_info', {
+                title: "Verbe " + data.name.charAt(0).toUpperCase()  + data.name.slice(1) + " - Sophire",
                 verb: data,
                 conjugation: c,
                 index: data.nameUTF8.charAt(0)

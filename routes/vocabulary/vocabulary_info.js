@@ -18,7 +18,9 @@ router.get('/:category/:vocabularyID', (req, res) => {
         if(data === null)
             return res.render('404')
 
-        res.render('vocabulary_info', {vocabulary: data})
+        res.render('vocabulary_info', {
+            title: "Vocabulaire \"" + data.name + "\" - Sophire",
+            vocabulary: data})
     })
 })
 

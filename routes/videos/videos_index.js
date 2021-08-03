@@ -8,7 +8,9 @@ router.get('/', function (req, res) {
     get_youtube_channels_json()
         .then((channels) => {
 
-            return res.render('videos', {channels: channels})
+            return res.render('videos', {
+                title: "Chaînes de YouTube - Sophire",
+                channels: channels})
         })
         .catch((err) => {
 

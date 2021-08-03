@@ -19,7 +19,7 @@ router.get('/', function(req, res) {
                 res.render('404')
             else
                 res.render('vocabulary', {
-                    title: 'Sophire | Verbes et vocabulaire française',
+                    title: "Vocabulaire en français - Sophire",
                     vocabulary: data,
                     indexes: jsonIndexes
                 });

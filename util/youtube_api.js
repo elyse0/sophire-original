@@ -62,4 +62,16 @@ let get_youtube_channel_info = async function (channel_id, key = process.env.you
     }
 }
 
-module.exports = {get_playlist_items, get_youtube_channel_info}
+let get_youtube_video_info = async function(video_id, key = process.env.youtube_api_key){
+
+    let request = "https://youtube.googleapis.com/youtube/v3/videos" +
+        "?part=snippet" +
+        "&id=" + video_id +
+        "&key=" + key
+
+    let response = await axios.get(request)
+
+    return response.data.items[0]
+}
+
+module.exports = {get_playlist_items, get_youtube_channel_info, get_youtube_video_info}

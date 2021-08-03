@@ -6,11 +6,16 @@ const apiAuth = require('/util/auth_api')
 const set_difference = require('/util/set_operations').setDifference
 let get_playlist_items = require('/util/youtube_api').get_playlist_items
 let update_youtube_channels_db = require('/util/youtube_channels_db').update_youtube_channels_db
+let get_youtube_video_info = require('/util/youtube_api').get_youtube_video_info
 
 // Model
 const Videos = require('/models/video')
 
 let save_video = async function (video_json) {
+
+    let video_info = await get_youtube_video_info(video_json.video_id)
+
+    video_json["date"] = video_info.snippet.publishedAt
 
     let video_db = Videos(video_json)
 

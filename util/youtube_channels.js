@@ -9,10 +9,7 @@ let get_youtube_channels = async function(){
 
     console.log(channels)
 
-    return channels.sort((a, b) => {
-
-        return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-    });
+    return channels
 }
 
 let get_youtube_channels_json = async function (){
