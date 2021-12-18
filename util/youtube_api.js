@@ -18,7 +18,9 @@ let get_playlist_items = async function (playlist_id,
 
     let response = await axios.get(request)
 
-    let array_items = response.data.items.map((item) => {
+    let filtered_videos = response.data.items.filter((item) => Object.keys(item.snippet.thumbnails).length !== 0)
+
+    let array_items = filtered_videos.map((item) => {
 
         return {
             video_id: item.snippet.resourceId.videoId,
